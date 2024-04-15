@@ -52,7 +52,9 @@ if(dateDifference > 0 ){
 
 
 function renderTaskList() {
-   
+  $("#to-do .droppable").empty()
+  $("#in-progress .droppable").empty()
+  $("#done .droppable").empty()
   // Loop through taskList using a for loop
   for (let i = 0; i < taskList.length; i++) {
     console.log("++++++++++++++++++++++++++++++++Start of loop +++++++++++++++++++++++++++")
@@ -104,7 +106,11 @@ function handleAddTask(event){
   // Use Day.js to parse deadline string
     const parsedDeadline = dayjs(deadline).isValid() ? dayjs(deadline) : null;
       console.log("Parsed Deadline: ", parsedDeadline)
-    if (title) {
+      // ALWAYS TEST THE NEGATIVE IF IT MAKES SENSE
+      if(!title || ! description || ! deadline){
+        alert("Please enter a task title.");
+        return
+      }
         const newTask = {
         id: generateTaskId(),
         title,
@@ -115,13 +121,13 @@ function handleAddTask(event){
     taskList.push(newTask);
     localStorage.setItem("tasks", JSON.stringify(taskList));
     renderTaskList();
+    $("#taskTitle").val("")
+    $("#taskDescription").val("")
+    $("#taskDeadline").val("")
     $("#formModal").modal("hide"); // Close modal after adding task
-  } else {
-    alert("Please enter a task title.");
-  }}
   console.log("task added!")
 }
-
+}
 saveTaskButton.addEventListener('click', handleAddTask)
 
 
@@ -212,3 +218,6 @@ $(document).ready(function () {
 });
 
 
+// drag and drop into columns looks funky but is overall functional
+// when i refresh the page, the deleted items should stay gone & the saved items should persist
+// when i add another task, it adds a duplicate of the tasks that are already on the page

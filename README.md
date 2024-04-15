@@ -2,6 +2,9 @@
 
 This is a simple Kanban board web application for task management. It allows users to create tasks, assign descriptions and due dates, and categorize them based on their status (to-do, in-progress, done). 
 
+### Mock-Up
+![mock-up](module5-taskboard.png)
+
 ### Dependencies
 
 This application uses the following external libraries:
