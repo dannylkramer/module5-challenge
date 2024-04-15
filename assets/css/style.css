@@ -9,10 +9,22 @@ body {
 
 .task-card {
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .task-card:hover {
   cursor: grab;
 }
 
+.overdue {
+  background-color: rgba(255, 0, 0, 0.5);
+}
 
+.approaching-deadline {
+  background-color: rgba(255,253,116, 0.8);
+}
+
+.on-schedule {
+background-color: rgba(0, 255,0, 0.5);
+}
